@@ -51,7 +51,7 @@ Usuários, troca de senha e e-mail só funcionam conectado. Para apagar os teste
 Se você já tinha rodado o `schema.sql`, rode a versão nova de novo (não apaga dados).
 
 ## Instalar como aplicativo
-Os arquivos `manifest.webmanifest`, `sw.js` e a pasta `icons` precisam estar no repositório junto com o `index.html`.
+Todos os arquivos da pasta "enviar-ao-github" (index.html, manifest.webmanifest, sw.js e os 6 arquivos .png) ficam soltos, juntos, na página inicial do repositório.
 - **iPhone (Safari):** abrir o endereço → botão Compartilhar → **Adicionar à Tela de Início**.
 - **Android (Chrome):** abrir o endereço → menu ⋮ → **Instalar aplicativo** (ou "Adicionar à tela inicial").
 - **Computador (Chrome/Edge):** ícone de instalar na barra de endereço.

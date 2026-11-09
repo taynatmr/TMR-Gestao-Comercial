@@ -7,9 +7,9 @@
 <meta name="theme-color" content="#1f2a37">
 <meta name="description" content="TMR Gestão Comercial — vendas, estoque, orçamentos e finanças">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="TMR Gestão">
@@ -1030,7 +1030,7 @@ function telaNovaSenha() {
   };
 }
 
-const marcaTMR = () => `<div class="gate-brand"><div class="mark"><img src="icons/icon-192.png" alt="TMR" onerror="this.replaceWith(document.createRange().createContextualFragment(ico('store')))"></div><div><b>TMR Gestão Comercial</b><small>Gestão de vendas, estoque e finanças</small></div></div>`;
+const marcaTMR = () => `<div class="gate-brand"><div class="mark"><img src="./icon-192.png" alt="TMR" onerror="this.replaceWith(document.createRange().createContextualFragment(ico('store')))"></div><div><b>TMR Gestão Comercial</b><small>Gestão de vendas, estoque e finanças</small></div></div>`;
 
 function telaEmpresaInicial() {
   $('#root').innerHTML = `<div class="gate"><div class="card">
@@ -1252,7 +1252,7 @@ function montarApp() {
 function pintarMarca() {
   const e = S.empresa || {};
   const nome = e.nome_fantasia || e.razao_social || 'Minha empresa';
-  $('#brand').innerHTML = `<div class="brand-logo">${e.logo_url ? `<img src="${esc(e.logo_url)}" alt="">` : `<img src="icons/icon-192.png" alt="TMR" style="background:none">`}</div>
+  $('#brand').innerHTML = `<div class="brand-logo">${e.logo_url ? `<img src="${esc(e.logo_url)}" alt="">` : `<img src="./icon-192.png" alt="TMR" style="background:none">`}</div>
     <div style="min-width:0"><b>${esc(nome)}</b><small>TMR Gestão Comercial</small></div>
     <button class="pin" id="bpin" type="button" aria-label="Fixar menu">${ico('pin')}</button>`;
   $('#tbemp').innerHTML = `${e.logo_url ? `<img src="${esc(e.logo_url)}" alt="">` : ''}<span>${esc(nome)}</span>`;
