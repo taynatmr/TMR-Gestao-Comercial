@@ -50,6 +50,12 @@ Usuários, troca de senha e e-mail só funcionam conectado. Para apagar os teste
 
 Se você já tinha rodado o `schema.sql`, rode a versão nova de novo (não apaga dados).
 
+## Instalar como aplicativo
+Os arquivos `manifest.webmanifest`, `sw.js` e a pasta `icons` precisam estar no repositório junto com o `index.html`.
+- **iPhone (Safari):** abrir o endereço → botão Compartilhar → **Adicionar à Tela de Início**.
+- **Android (Chrome):** abrir o endereço → menu ⋮ → **Instalar aplicativo** (ou "Adicionar à tela inicial").
+- **Computador (Chrome/Edge):** ícone de instalar na barra de endereço.
+
 ## Configurações
 - **Alterar cores:** temas prontos ou cores personalizadas (vale para o sistema e para os PDFs). "Resetar" volta ao padrão.
 - **Menu e funcionalidades:** escolha se a empresa trabalha com mercadorias, serviços ou os dois; oculte itens do menu e mude a ordem (arrastando ou pelas setas). Ocultar não apaga dados.

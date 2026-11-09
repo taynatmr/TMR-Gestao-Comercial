@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TMR Gestão Comercial</title>
 <meta name="theme-color" content="#1f2a37">
+<meta name="description" content="TMR Gestão Comercial — vendas, estoque, orçamentos e finanças">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="TMR Gestão">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="application-name" content="TMR Gestão">
 <script>
   /* =====================================================================
      CONEXÃO COM O SUPABASE
@@ -249,7 +259,8 @@ input.f.erro{border-color:var(--bad);background:var(--bad-soft)}
 .gate .card{width:100%;max-width:410px;padding:28px}
 .gate h1{font-size:21px;margin:12px 0 4px}
 .gate p{color:var(--muted);margin:0 0 18px;font-size:13.5px}
-.gate .mark{width:46px;height:46px;border-radius:12px;background:var(--accent);color:var(--on-accent);display:grid;place-items:center}
+.gate .mark img{width:100%;height:100%;border-radius:12px;display:block}
+.gate .mark{width:46px;height:46px;border-radius:12px;overflow:hidden;background:var(--accent);color:var(--on-accent);display:grid;place-items:center}
 .gate form{display:flex;flex-direction:column;gap:12px}
 .gate .msg{font-size:13px;padding:9px 12px;border-radius:8px}
 .gate-brand{display:flex;align-items:center;gap:10px;margin-bottom:6px}
@@ -370,8 +381,8 @@ body.menu-solto .scrim.open{display:block;position:fixed;inset:0;background:rgba
   .main{margin-left:0}
   .topbar{display:flex}
   .content{padding:16px 14px calc(50px + env(safe-area-inset-bottom))}
-  .opts{grid-template-columns:1fr}
-  .opts.compact{grid-template-columns:repeat(3,1fr)}
+  .opts:not(.compact){grid-template-columns:1fr!important}
+  .opts:not(.compact) .opt{padding:14px 16px}
   .opts.compact .opt{flex-direction:column;gap:6px;padding:10px;text-align:center}
   .opts.compact .opt b{font-size:12px}
   .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -379,6 +390,17 @@ body.menu-solto .scrim.open{display:block;position:fixed;inset:0;background:rgba
 }
 @media (max-width:640px){
   input.f,select.f,textarea.f{font-size:16px;height:42px}
+  .kpis{grid-template-columns:1fr 1fr!important}
+  .kpis>.kpi:last-child:nth-child(odd){grid-column:span 2}
+  .toolbar>select.f{flex:1 1 100%;width:100%}
+  .toolbar>.seg{width:100%;display:flex}
+  .toolbar>.seg button{flex:1;padding:7px 6px}
+  .toolbar>span[style*="flex:1"]{display:none}
+  .toolbar>.btn{flex:1 1 100%}
+  .opts.compact{gap:8px}
+  .opts.compact .opt{padding:10px 4px;border-radius:12px}
+  .opts.compact .opt b{font-size:11.5px;letter-spacing:.02em}
+  table.t.resp td[data-l="Composição"]{flex-direction:column;align-items:flex-end;text-align:right}
   .toolbar .inline.datas{width:100%}
   .toolbar .inline.datas .f{flex:1;width:0}
   textarea.f{height:auto}
@@ -1008,7 +1030,7 @@ function telaNovaSenha() {
   };
 }
 
-const marcaTMR = () => `<div class="gate-brand"><div class="mark">${ico('store')}</div><div><b>TMR Gestão Comercial</b><small>Gestão de vendas, estoque e finanças</small></div></div>`;
+const marcaTMR = () => `<div class="gate-brand"><div class="mark"><img src="icons/icon-192.png" alt="TMR" onerror="this.replaceWith(document.createRange().createContextualFragment(ico('store')))"></div><div><b>TMR Gestão Comercial</b><small>Gestão de vendas, estoque e finanças</small></div></div>`;
 
 function telaEmpresaInicial() {
   $('#root').innerHTML = `<div class="gate"><div class="card">
@@ -1230,7 +1252,7 @@ function montarApp() {
 function pintarMarca() {
   const e = S.empresa || {};
   const nome = e.nome_fantasia || e.razao_social || 'Minha empresa';
-  $('#brand').innerHTML = `<div class="brand-logo">${e.logo_url ? `<img src="${esc(e.logo_url)}" alt="">` : ico('store')}</div>
+  $('#brand').innerHTML = `<div class="brand-logo">${e.logo_url ? `<img src="${esc(e.logo_url)}" alt="">` : `<img src="icons/icon-192.png" alt="TMR" style="background:none">`}</div>
     <div style="min-width:0"><b>${esc(nome)}</b><small>TMR Gestão Comercial</small></div>
     <button class="pin" id="bpin" type="button" aria-label="Fixar menu">${ico('pin')}</button>`;
   $('#tbemp').innerHTML = `${e.logo_url ? `<img src="${esc(e.logo_url)}" alt="">` : ''}<span>${esc(nome)}</span>`;
@@ -3415,6 +3437,10 @@ Views.dashboard = async (v, _, vivo) => {
   $$('[data-venda]', v).forEach(r => r.onclick = () => detalhesVenda(r.dataset.venda).catch(falha));
 };
 
+/* Aplicativo instalável (tela de início do celular / computador) */
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
 iniciar();
 </script>
 </body>
